@@ -1,0 +1,24 @@
+<div class="card h-100">
+  <div class="card-header p-0">
+    <img class="image rounded"
+         [src]="item.kepUrl"
+         alt="">
+    <h4 class="mx-3 my-2">{{item.megnevezes}}</h4>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Leírás:</h5>
+    <p class="card-text overflow-y-scroll"> {{ item.leiras }} </p>
+  </div>
+  <div class="card-footer d-flex flex-column align-items-center">
+    <label for="quantity">Darab:</label>
+    <input [(ngModel)]="quantity"
+           class="form-control text-center"
+           type="number"
+           min="1"
+           id="quantity">
+    <h4 class="mt-2">{{ price() }} Ft</h4>
+    <button (click)="addToCart()"
+            type="button"
+            class="btn btn-primary mt-2">Kosárba</button>
+  </div>
+</div>

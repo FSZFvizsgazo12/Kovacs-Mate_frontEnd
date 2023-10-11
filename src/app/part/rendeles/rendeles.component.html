@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <h1 class="mx-2">Kosár tartalma: <span [hidden]="cartList.length !== 0">üres</span></h1>
+
+  <table class="table"
+         [hidden]="cartList.length === 0">
+    <thead>
+      <tr>
+        <th scope="col">Megnevezés</th>
+        <th scope="col">Darab</th>
+        <th scope="col">Ár</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartList">
+        <td>{{ item.name}}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ price(item.id) }} Ft</td>
+        <td><button (click)="removeFromCart(item.id)"
+                  type="button"
+                  class="btn btn-primary">Töröl</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div [hidden]="cartList.length === 0"
+       class="row text-center">
+    <h3 class="mx-auto">Összesen: {{ totalPrice() }} Ft</h3>
+  </div>
+</div>
+
+<div class="row mx-2 mt-5"
+     [hidden]="cartList.length === 0">
+  <hr>
+  <h1 class="mb-3">Rendelés leadása:</h1>
+  <div class="col-12 col-md-6 col-lg-4 mx-auto">
+    <form (ngSubmit)="placeOrder()">
+      <label for="name">Megrendelő neve:</label>
+      <input [(ngModel)]="customerName"
+             type="text"
+             class="form-control mb-3"
+             id="name"
+             name="name"
+             placeholder="Név..."
+             required>
+      <label for="address">Megrendelő címe:</label>
+      <input [(ngModel)]="customerAddress"
+             type="text"
+             class="form-control mb-3"
+             placeholder="Cím..."
+             id="address"
+             name="address"
+             required>
+      <div class="col text-center">
+        <button type="submit"
+                class="btn btn-primary mb-3">Rendelés leadása</button>
+      </div>
+    </form>
+  </div>
+  <hr>
+</div>

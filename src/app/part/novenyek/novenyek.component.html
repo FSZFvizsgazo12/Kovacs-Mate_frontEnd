@@ -1,0 +1,19 @@
+<div class="container-fluid d-flex flex-column align-items-center">
+  <h1>Ajánlataink</h1>
+  <div class="mb-3 col-12 col-sm-5 d-flex">
+    <input [(ngModel)]="searchText"
+           (input)="filterList()"
+           type="text"
+           class="form-control"
+           placeholder="Keresés...">
+    <button [hidden]="searchText === ''"
+            (click)="clear()"
+            type="button"
+            class="btn btn-danger">X</button>
+  </div>
+  <div class="d-flex justify-content-center flex-wrap gap-3">
+    <app-article *ngFor="let item of currentList"
+                 class="col-12 col-sm-5 col-lg-4 col-xxl-3 align-self-stretch"
+                 [item]="item"></app-article>
+  </div>
+</div>
